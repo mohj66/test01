@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.CustomerDao">
+    <resultMap id="CustomerMap" type="com.itheima.domian.Customer">
+        <id     column="cust_id" property="custId"/>
+        <result column="cust_name" property="custName"/>
+        <result column="cust_source" property="custSource"/>
+        <result column="cust_industry" property="custIndustry"/>
+        <result column="cust_level" property="custLevel"/>
+        <result column="cust_address" property="custAddress"/>
+        <result column="cust_phone" property="custPhone"/>
+    </resultMap>
+    <select id="findAll" resultMap="CustomerMap">
+        select * from cst_customer
+    </select>
+    <select id="findCustomerById" resultMap="CustomerMap">
+        SELECT * FROM CST_customer where cust_id = #{custId}
+    </select>
+    <update id="updateCustomer" parameterType="com.itheima.domian.Customer">
+        update cst_customer
+        SET
+            cust_name=    {custName},
+            cust_source=  {custIndustry},
+            cust_industry={custAddress},
+            cust_level=   {custPhone},
+            cust_address= {custLevel},
+            cust_phone=   {custSource}
+        where cus_id = #{cusId}
+    </update>
+</mapper>
